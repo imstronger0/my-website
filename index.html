@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi,eng">
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,7 +103,7 @@
     .progress-bar { 
         height: 100%; background: var(--rainbow); background-size: 200% auto; 
         animation: rainbow_move 4s linear infinite; 
-        width: 0; /* Mặc định bằng 0 */
+        width: 0; 
         transition: width 2s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .counter-text { font-family: 'Orbitron', sans-serif; color: #00ffcc; text-shadow: 0 0 5px rgba(0,255,204,0.5); }
@@ -157,14 +157,15 @@
                 <h1 class="rainbow-text" style="font-size: 3rem; margin: 0; line-height: 1;">Nducz<span style="color:#ff416c"></span></h1>
                 <div class="rainbow-text" style="font-size: 1.1rem; margin: 10px 0; font-weight: 600;">Full Stack Developer</div>
                 <p class="rainbow-text" style="font-size: 0.8rem; opacity: 0.8; letter-spacing: 1px;">#Nducz_fullstack</p>
+                
                 <div class="social-links">
-                    <a href="#" class="social-item"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-item"><i class="fab fa-github"></i></a>
-                    <a href="#" class="social-item"><i class="fab fa-telegram-plane"></i></a>
-                    <a href="#" class="social-item"><i class="fab fa-tiktok"></i></a>
-                    <a href="#" class="social-item"><i class="fas fa-code-compare"></i></a>
+                    <a href="https://www.facebook.com/danh.ng.251209" target="_blank" class="social-item"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://github.com/imstronger0" target="_blank" class="social-item"><i class="fab fa-github"></i></a>
+                    <a href="https://t.me/Wcidkran" target="_blank" class="social-item"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://www.tiktok.com/@cidfeink" target="_blank" class="social-item"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/_only.fans_2512_/" target="_blank" class="social-item"><i class="fab fa-instagram"></i></a>
                 </div>
-            </div>
+                </div>
         </div>
         
         <div class="jd-music-container">
@@ -240,39 +241,33 @@ function enterSite() {
     audio.play();
     document.querySelector('.music-control').classList.add('playing');
     
-    // Bắt đầu theo dõi khi nào lướt xuống tới Skill thì chạy
     setupScrollObserver();
 }
 
 function setupScrollObserver() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // Nếu nhìn thấy khung Skill
             if (entry.isIntersecting) {
-                runSkillEffects(); // Chạy hiệu ứng
-                observer.disconnect(); // Ngắt theo dõi (chỉ chạy 1 lần)
+                runSkillEffects();
+                observer.disconnect();
             }
         });
-    }, { threshold: 0.5 }); // Hiển thị 50% khung thì bắt đầu chạy
+    }, { threshold: 0.5 });
 
     const skillSection = document.getElementById('skill-section');
     if(skillSection) observer.observe(skillSection);
 }
 
 function runSkillEffects() {
-    // 1. Chạy thanh màu
     const skills = document.querySelectorAll('.progress-bar');
     skills.forEach(skill => {
         const width = skill.getAttribute('data-width');
         skill.style.width = width;
     });
 
-    // 2. Chạy số % nhảy nhảy
     const counters = document.querySelectorAll('.counter-text');
     counters.forEach(counter => {
         const target = +counter.getAttribute('data-target');
-        const speed = 200; 
-        
         let count = 0;
         const updateCount = () => {
             if(count < target) {
@@ -300,7 +295,7 @@ function toggleMusic() {
     }
 }
 
-// Background Visualizer (Giữ nguyên)
+// Background Visualizer
 const grid = document.getElementById('contribution-grid');
 const dots = [];
 const rows = 7, cols = 52;
@@ -322,7 +317,7 @@ function jdVisualizer() {
 }
 setInterval(jdVisualizer, 130);
 
-// Flying Fish Background (Giữ nguyên)
+// Flying Fish Background
 var RENDERER = {
     POINT_INTERVAL: 5, FISH_COUNT: 3, MAX_INTERVAL_COUNT: 50, INIT_HEIGHT_RATE: 0.5, THRESHOLD: 50,
     init: function() { this.setParameters(); this.reconstructMethods(); this.setup(); this.bindEvent(); this.render() },
